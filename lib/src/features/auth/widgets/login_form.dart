@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/button.dart';
 import '../../../widgets/input.dart';
@@ -62,7 +63,7 @@ class LoginForm extends StatelessWidget {
                     height: 50,
                     child: Button(
                       buttonText: 'Login via GitHub',
-                      onPress: () {},
+                      onPress: () => Get.toNamed('/github_auth'),
                       textStyle: const TextStyle(fontWeight: FontWeight.bold),
                       buttonStyle: OutlinedButton.styleFrom(
                           elevation: 20,
