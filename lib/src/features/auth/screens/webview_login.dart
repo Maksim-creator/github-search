@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:github_users/src/repositories/auth_repo.dart';
+import 'package:github_users/src/features/user/user.controller.dart';
 import 'package:github_users/src/utils/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -9,6 +9,8 @@ class WebViewLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.put(UserController());
+
     final controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -30,7 +32,7 @@ class WebViewLogin extends StatelessWidget {
               final Uri uri = Uri.parse(request.url);
               final String? code = uri.queryParameters['code'];
               if (code != null) {
-                await AuthRepo().authorizeUser(code);
+                await userController.authorizeUser(code);
               }
               return NavigationDecision.prevent;
             }

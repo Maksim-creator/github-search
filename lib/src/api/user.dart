@@ -10,4 +10,7 @@ class User {
         'Authorization': 'token ${getAccessToken(token)}',
         'User-Agent': 'Login-App',
       }));
+
+  Future<Response<List<dynamic>>> getRepositories(String username) async =>
+      await dio.get('https://api.github.com/users/$username/repos');
 }
