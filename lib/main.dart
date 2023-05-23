@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+
 import 'package:github_users/src/features/auth/screens/initial_screen.dart';
 import 'package:github_users/src/features/auth/screens/webview_login.dart';
 import 'package:github_users/src/features/user/screens/home.dart';
+import 'package:github_users/src/features/user/user.controller.dart';
 
-void main() {
+void main() async {
+  await initializeGetX();
+
   runApp(const MyApp());
 }
 
@@ -14,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: Get.deviceLocale,
       initialRoute: '/',
       getPages: [
         GetPage(name: '/', page: () => const InitialScreen()),
@@ -22,4 +27,8 @@ class MyApp extends StatelessWidget {
       ],
     );
   }
+}
+
+Future? initializeGetX() async {
+  Get.put(UserController());
 }
