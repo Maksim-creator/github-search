@@ -14,7 +14,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RxBool _isLightTheme = false.obs;
+    RxBool isLightTheme = false.obs;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 17),
@@ -65,10 +65,10 @@ class HomeHeader extends StatelessWidget {
                   ),
                   ObxValue((p0) {
                     return Switch(
-                      value: _isLightTheme.value,
+                      value: isLightTheme.value,
                       activeColor: Colors.green,
                       onChanged: (bool value) {
-                        _isLightTheme.value = value;
+                        isLightTheme.value = value;
                         Get.changeTheme(Get.isDarkMode
                             ? ThemeData.light()
                             : ThemeData.dark());

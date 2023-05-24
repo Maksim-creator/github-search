@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Input extends StatelessWidget {
   final String? hintText;
   final TextEditingController? controller;
+  final Function(String)? onChanged;
 
-  const Input({super.key, this.hintText, this.controller});
+  const Input({super.key, this.hintText, this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class Input extends StatelessWidget {
         hintText: hintText,
       ),
       controller: controller,
+      onChanged: onChanged,
     );
   }
 }

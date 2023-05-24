@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:github_users/src/features/auth/auth.controller.dart';
 
 import 'package:github_users/src/features/auth/screens/initial_screen.dart';
 import 'package:github_users/src/features/auth/screens/webview_login.dart';
+import 'package:github_users/src/features/user/screens/drag.dart';
 import 'package:github_users/src/features/user/screens/home.dart';
 import 'package:github_users/src/features/user/user.controller.dart';
 
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const InitialScreen()),
         GetPage(name: '/github_auth', page: () => const WebViewLogin()),
-        GetPage(name: '/home', page: () => const Home())
+        GetPage(name: '/home', page: () => const Home()),
+        GetPage(name: '/home/drag', page: () => const Drag())
       ],
     );
   }
@@ -31,4 +34,5 @@ class MyApp extends StatelessWidget {
 
 Future? initializeGetX() async {
   Get.put(UserController());
+  Get.put(AuthController());
 }
