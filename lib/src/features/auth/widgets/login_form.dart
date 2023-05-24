@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:github_users/src/features/auth/auth.controller.dart';
+import 'package:github_users/src/features/user/user.controller.dart';
 
 import '../../../widgets/button.dart';
 import '../../../widgets/input.dart';
@@ -9,9 +11,17 @@ class LoginForm extends StatelessWidget {
 
   const LoginForm({super.key, required this.isStarted});
 
+  // void authorizeAsGuest(String username) {
+  //   AuthController().setIsGuest();
+  //   UserController().authorizeAnonymousUser(username);
+  // }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController usernameController = TextEditingController();
+
+    final userController = Get.find<UserController>();
+    final authController = Get.find<AuthController>();
 
     return AnimatedPositioned(
         left: !isStarted ? MediaQuery.of(context).size.width * 2 : 0,
@@ -40,7 +50,11 @@ class LoginForm extends StatelessWidget {
                             buttonText: 'Continue as guest',
                             onPress:
                                 value.text.isNotEmpty && value.text.length >= 2
-                                    ? () {}
+                                    ? () {
+                                        authController.setIsGuest();
+                                        userController.authorizeAnonymousUser(
+                                            usernameController.text);
+                                      }
                                     : null,
                             textStyle:
                                 const TextStyle(fontWeight: FontWeight.bold),

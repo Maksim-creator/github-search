@@ -1,3 +1,5 @@
+import 'dart:async';
+
 Map<String, dynamic> convertToCamelCase(Map<String, dynamic> input) {
   final result = <String, dynamic>{};
 
@@ -30,4 +32,19 @@ String _convertToCamelCase(String input) {
           .join('');
 
   return result;
+}
+
+Function debounce(Future callback, Duration duration) {
+  Timer? timer;
+
+  return () {
+    if (timer != null) {
+      timer!.cancel();
+    }
+
+    timer = Timer(duration, () {
+      callback.then((value) => value);
+      timer = null;
+    });
+  };
 }
